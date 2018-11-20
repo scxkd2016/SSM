@@ -5,4 +5,17 @@
 *.iml
 /.idea/
 /out/
+/target/
+
+# Compiled class files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
 
