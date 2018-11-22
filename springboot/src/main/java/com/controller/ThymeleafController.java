@@ -15,10 +15,10 @@ public class ThymeleafController {
         model.addAttribute("key", new Date());
         return "index";
     }
-    @RequestMapping("/{page}")
-    public String show2(@PathVariable  String page) {
-        return page;
-    }
+//    @RequestMapping("/{page}")
+//    public String show2(@PathVariable  String page) {
+//        return page;
+//    }
     @RequestMapping("/show2")
     public String show3() {
         return "th_url";
