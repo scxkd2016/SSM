@@ -4,12 +4,14 @@ import com.pojo.User;
 import com.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -19,14 +21,17 @@ public class UserController {
 
     @RequestMapping("/adduser")
     @ResponseBody
-    public String addUser(User user) {
+    public String addUser(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "input";
+        }
         userService.addUser(user);
         return "OK";
     }
-//    @RequestMapping("/{page}")
-//    public String show(@PathVariable String page) {
-//        return page;
-//    }
+    @RequestMapping("/adduserui")
+    public String show(User user) {
+        return "input";
+    }
 
     @RequestMapping("/findall")
     public String findall(Model model) {
@@ -49,9 +54,8 @@ public class UserController {
     }
 
     @RequestMapping("/deletebyid")
-    @ResponseBody
     public String deleteUser(int id) {
         userService.deleteById(id);
-        return "OK";
+        return "redirect:/findall";
     }
 }

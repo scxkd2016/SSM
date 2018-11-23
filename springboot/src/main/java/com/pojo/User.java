@@ -1,7 +1,11 @@
 package com.pojo;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class User {
+    @NotBlank
     private int id;
+    @NotBlank
     private String name;
     private String password;
 
