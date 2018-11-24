@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+<body>
+    <form th:action="@{/adduser}" method="post">
+        id:<input type="text" name="id"/><font color="red" th:errors="${user.id}"></font><br/>
+        name:<input type="text" name="name"/><font color="red" th:errors="${user.name}"></font><br/>
+        password:<input type="password" name="password"><br/>
+        <input type="submit" name="confirm"><br/>
+    </form>
+</body>
+</html>

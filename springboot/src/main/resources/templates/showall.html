@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Show All Users</title>
+</head>
+<body>
+    <table border="1" style="width: 300px;">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PASSWORD</th>
+            <th>OPR</th>
+            <th>OPR</th>
+        </tr>
+        <tr th:each="user : ${list}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.password}"></td>
+            <td>
+                <a  th:href="@{/findbyid(id=${user.id})}">update</a>
+
+            <td>
+                <a  th:href="@{/deletebyid(id=${user.id})}">delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
