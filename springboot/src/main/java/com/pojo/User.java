@@ -1,9 +1,10 @@
 package com.pojo;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class User {
-    @NotBlank
+//    @NotEmpty
     private int id;
     @NotBlank
     private String name;

@@ -20,7 +20,6 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/adduser")
-    @ResponseBody
     public String addUser(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "input";
@@ -28,6 +27,7 @@ public class UserController {
         userService.addUser(user);
         return "OK";
     }
+
     @RequestMapping("/adduserui")
     public String show(User user) {
         return "input";
