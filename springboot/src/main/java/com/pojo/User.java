@@ -3,7 +3,10 @@ package com.pojo;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class User {
+import javax.persistence.Entity;
+import java.io.Serializable;
+@Entity
+public class User implements Serializable {
 //    @NotEmpty
     private int id;
     @NotBlank
@@ -34,4 +37,12 @@ public class User {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
