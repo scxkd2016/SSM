@@ -3,14 +3,21 @@ package com.pojo;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
+@Table(name = "user")
 public class User implements Serializable {
 //    @NotEmpty
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     @NotBlank
+    @Column(name = "name")
     private String name;
+    @Column(name = "password")
     private String password;
 
     public String getPassword() {

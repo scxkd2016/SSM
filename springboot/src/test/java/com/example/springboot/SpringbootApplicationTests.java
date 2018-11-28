@@ -1,6 +1,8 @@
 package com.example.springboot;
 
 import com.SpringbootApplication;
+import com.dao_jpa.UserRepository;
+import com.pojo.User;
 import com.service.impl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,12 +19,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SpringbootApplicationTests {
     @Autowired
     private UserServiceImpl userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @Test
     public void contextLoads() {
-        JedisConnectionFactory
         System.out.println(userService.selectById(1).toString());
         System.out.println(userService.selectById(1).toString());
     }
 
+    @Test
+    public void jpa_test() {
+        User user = new User();
+        user.setName("Green");
+        user.setPassword("45646f5sds");
+        userRepository.save(user);
+    }
 }
