@@ -1,6 +1,6 @@
 package test.ssm.service.impl;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.*;
 import test.ssm.dao.UserDao;
 import test.ssm.model.User;
 import test.ssm.service.IUserService;
