@@ -9,8 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class DemoController {
     @RequestMapping("/demo")
     public String demo() {
-        String str = null;
-        str.length();
         return "demo";
     }
 

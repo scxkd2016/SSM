@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="MD5.js"></script>
+    <script type="text/javascript" src="sign.js"></script>
+    <script type="text/javascript" src="print.js"></script>
+    <script>
+        window.onload = function myfunction(){
+            var executionId = 'process%3Adbd68460-8d68-42a0-a8b2-50e7de08f735';
+            requestUrl = 'https://api.zwjk.com/export/ui/doct/list_1_7_4?' + executionId + '&pageFormKey=1-7-4&ucUiFlowId=98db3dd2-b2d2-11e6-a249-525400644ee2&stepId=F_1-7-4&session=b5b9c4ab-97b4-492a-bd43-27cca683c520'
+            var requestModel = '';
+            var randomStr = Math.random().toString(36).substr(2);
+            var timestamp = new Date().getTime();
+            requestModel = parseQueryString(decodeURIComponent(requestUrl).replace(/\+/g, ' '));
+            requestModel["noticeStr"] = randomStr;
+            requestModel["timestamp"] = timestamp;
+            var signStr = createSignature(requestModel);
+            requestModel["sign"] = signStr;
+            document.getElementById("result").innerHTML = writeHtml(requestModel);
+            //id.innerHTML=writeHtml(requestModel);
+        };
+        function parseQueryString(url) {
+            var arr, Json = {};
+            if (url.indexOf("?") == -1) {
+                return Json;
+            }
+            var str = url.split("?")[1];
+            if (str.indexOf("&") != -1) {
+                var iterms = str.split("&");
+                for (var i = 0; i < iterms.length; i++) {
+                    arr = iterms[i].split("=");
+                    Json[arr[0]] = arr[1];
+                }
+            } else {
+                arr = str.split("=");
+                Json[arr[0]] = arr[1];
+            }
+            return Json;
+        }
+        function writeHtml(obj) {
+            var objStr = JSON.stringify(obj, null, 4);
+            var html = objStr.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp');
+            return html;
+            //document.write(html);
+            //document.getElementById("result").innerHTML=html;
+        }
+        function createSignature(params) {
+            var paramArray = [];
+            for(var key in params) {
+                paramArray.push(key);
+            }
+            paramArray.sort();
+            var sortStr = "";
+            for(var i = 0; i < paramArray.length; i++) {
+                var key = paramArray[i];
+                if('' != params[key] && null != params[key] && undefined != params[key]){
+                    sortStr = sortStr + key + "=" + params[key] + "&";
+                }
+            }
+            sortStr = sortStr.substring(0, sortStr.lastIndexOf("&"));
+            return MD5(sortStr);
+        }
+    </script>
+</head>
+<body>
+
+    <a id="result">文本</a>
+</body>
+</html>
